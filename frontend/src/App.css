@@ -1,0 +1,355 @@
+/* frontend/src/App.css */
+
+/* MAIN LAYOUT */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--bg-main);
+}
+
+/* FIX: Sidebar Overlap. We add a left margin equal to the sidebar width */
+.main-content {
+  flex-grow: 1;
+  height: 100vh;
+  overflow-y: auto;
+  margin-left: var(--sidebar-width-collapsed); 
+  position: relative;
+  z-index: 1;
+}
+
+/* PREMIUM CARD COMPONENT (Used in Directory, Profile, Events) */
+.ojas-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid var(--primary-light);
+  box-shadow: 0 4px 15px rgba(74, 58, 42, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  z-index: 2; /* Keeps cards above the canvas background */
+}
+
+.ojas-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 164, 55, 0.15); /* Soft gold glow */
+}
+
+/* PROMOTION SLIDER (Carousel) */
+.promo-slider-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  background: #000;
+}
+
+.promo-slide {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 30px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.promo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+}
+
+.promo-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.promo-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(212, 164, 55, 0.8);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.promo-btn:hover { background: var(--primary-deep); }
+.promo-btn.left { left: 10px; }
+.promo-btn.right { right: 10px; }
+
+
+/* SIDEBAR (HOTSTAR STYLE) */
+.sidebar {
+  position: fixed; /* Fixed prevents it from scrolling */
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width-collapsed);
+  height: 100vh;
+  background-color: var(--nav-bg);
+  border-right: 1px solid rgba(74, 58, 42, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+  z-index: 1000;
+}
+
+.sidebar:hover {
+  width: var(--sidebar-width-expanded);
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.logo-container {
+  padding: 20px 23px; 
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: var(--sidebar-width-expanded);
+}
+
+.logo-image { height: 28px; width: 28px; object-fit: contain; }
+.logo-text { font-size: 20px; font-weight: bold; color: var(--primary-deep); opacity: 0; transition: opacity 0.2s ease; }
+.sidebar:hover .logo-text { opacity: 1; }
+
+.nav-links { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.nav-item {
+  display: flex; align-items: center; padding: 12px 23px; text-decoration: none;
+  color: var(--text-dark); min-width: var(--sidebar-width-expanded); gap: 20px; transition: all 0.2s ease;
+}
+.nav-item:hover, .nav-item.active { color: var(--primary-main); }
+.nav-icon { flex-shrink: 0; }
+.nav-text { font-size: 16px; font-weight: 500; opacity: 0; transform: translateX(-10px); transition: all 0.3s ease; }
+.sidebar:hover .nav-text { opacity: 1; transform: translateX(0); }
+
+/* --- DASHBOARD ANIMATIONS --- */
+.dashboard-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.fade-text-container {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.fade-text-container h1 {
+  font-size: 36px;
+  color: var(--text-dark);
+  animation: fadePulse 6s infinite;
+}
+
+.fade-text-container p {
+  font-size: 18px;
+  color: var(--primary-deep);
+  margin-top: 10px;
+  animation: fadePulse 6s infinite;
+  animation-delay: 0.5s; 
+}
+
+  /* New classes to your existing frontend/src/App.css */
+
+.dashboard-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.dashboard-top-bar {
+    width: 100%;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: center;
+    background: transparent; /* Blends with the background */
+}
+
+.dashboard-top-bar img {
+    height: 40px; /* FIX: Drastically reduces the massive logo size */
+    max-width: 200px;
+    object-fit: contain;
+    mix-blend-mode: multiply; /* FIX: This removes the white box from your logo and blends it flawlessly into the beige background! */
+}
+
+.dashboard-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    padding: 0 20px 40px 20px;
+    gap: 40px; /* FIX: Forces a strict gap so the text NEVER overlaps the dark slider */
+    width: 100%;
+}
+
+/* --- UPDATED PROMO SLIDER (Larger, Warm Gradient, Bottom Right Buttons) --- */
+.promo-slider-container {
+  width: 100%;
+  max-width: 1300px; /* FIX: Increased width (X-axis) */
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(74, 58, 42, 0.2);
+  margin: 40px auto;
+  background-color: #1a1a1a;
+}
+
+.promo-slide {
+  box-sizing: border-box; /* UPDATE: Prevents padding from breaking dimensions, keeping text inside */
+  width: 100%;
+  height: 500px; /* Taller image */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 60px 50px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: background-image 0.5s ease-in-out; /* Smooth transition between slides */
+}
+
+.promo-overlay {
+  position: absolute;
+  inset: 0;
+  /* FIX: Warm Premium Gradient (Left dark, Right light, slight transparency) */
+  background: linear-gradient(to right, rgba(74, 58, 42, 0.95) 0%, rgba(140, 107, 60, 0.6) 60%, rgba(212, 164, 55, 0.2) 100%);
+}
+
+.promo-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 60%; /* Keeps text on the darker left side */
+  margin-bottom: 20px;
+}
+
+.promo-controls {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  gap: 15px;
+  z-index: 100;
+}
+
+.promo-btn {
+  background: rgba(74, 58, 42, 0.7); /* Dark brown glass effect */
+  color: var(--primary-main);
+  border: 1px solid var(--primary-main);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  z-index: 20;
+}
+
+.promo-btn:hover { 
+  background: var(--primary-main); 
+  color: white;
+}
+
+/* --- NEW CLASSES FOR JSX ELEMENTS --- */
+/* Added these to style the inner content of your slider properly */
+.promo-badge {
+    background-color: var(--accent-orange);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.promo-content h2 {
+    font-size: 38px;
+    margin: 0 0 10px 0;
+}
+
+.promo-content p {
+    font-size: 18px;
+    margin: 0 0 20px 0;
+    opacity: 0.9;
+}
+
+.promo-action-btn {
+    padding: 12px 28px;
+    background-color: var(--primary-main);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.promo-action-btn:hover {
+    background-color: var(--primary-deep);
+}
+
+.page-padding {
+    padding: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes fadePulse {
+  0% { opacity: 0; transform: translateY(10px); }
+  20% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* RESPONSIVE DESIGN (Mobile / iOS / Android) */
+@media (max-width: 768px) {
+  .app-container { flex-direction: column-reverse; }
+  
+  .main-content {
+    margin-left: 0; /* Remove left margin on mobile */
+    margin-bottom: 65px; /* Add bottom margin for nav bar */
+  }
+
+  .sidebar {
+    width: 100vw !important; 
+    height: 65px;
+    top: auto;
+    bottom: 0;
+    border-right: none;
+    border-top: 1px solid rgba(74, 58, 42, 0.1);
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .logo-container, .nav-text { display: none; }
+  .nav-links { flex-direction: row; margin-top: 0; width: 100%; justify-content: space-around; }
+  .nav-item { padding: 10px; min-width: auto; }
+
+}

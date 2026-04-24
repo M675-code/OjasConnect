@@ -1,0 +1,71 @@
+/* Styling for dynamically rendering elements inside steps */
+.dynamic-subform {
+    border-left: 3px solid var(--primary-main);
+    padding-left: 15px;
+    margin: 10px 0 20px 0;
+    background: #fdfdfd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Control buttons (+ / -) container */
+.btn-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+/* Small discrete control buttons */
+.ctrl-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.ctrl-btn.plus {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+    border: 1px solid #C8E6C9;
+}
+
+.ctrl-btn.plus:hover {
+    background-color: #C8E6C9;
+}
+
+.ctrl-btn.minus {
+    background-color: #FFEBEE;
+    color: #C62828;
+    border: 1px solid #FFCDD2;
+}
+
+.ctrl-btn.minus:hover {
+    background-color: #FFCDD2;
+}
+
+.add-start-btn {
+    padding: 8px 16px;
+    background-color: transparent;
+    color: var(--primary-main);
+    border: 2px dashed var(--primary-main);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+}
+
+.add-start-btn:hover {
+    background-color: #f4f0ec;
+}
+
+.repeated-block {
+    margin-bottom: 15px;
+}

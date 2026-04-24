@@ -1,0 +1,142 @@
+/* Base Sidebar (Desktop) */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 80px; /* Collapsed width */
+  background-color: var(--bg-beige);
+  border-right: 1px solid var(--light-gold);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* Expand on Hover */
+.sidebar:hover {
+  width: 240px; /* Expanded width */
+  box-shadow: 4px 0 15px rgba(0,0,0,0.05);
+}
+
+.brand-section {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  min-width: 240px; /* Keeps text from wrapping when collapsed */
+  margin-bottom: 30px;
+}
+
+.brand-logo {
+  width: 40px;
+  height: auto;
+  border-radius: 50%; /* Optional: rounds the logo if needed */
+  margin-right: 15px;
+}
+
+.brand-name {
+  color: var(--primary-gold);
+  font-size: 1.2rem;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .brand-name {
+  opacity: 1;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 28px;
+  text-decoration: none;
+  color: var(--dark-brown);
+  min-width: 240px;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+  background-color: var(--light-gold);
+  color: var(--dark-brown);
+  border-right: 4px solid var(--primary-gold);
+}
+
+.nav-icon {
+  font-size: 1.5rem;
+  margin-right: 25px;
+  color: var(--primary-gold);
+}
+
+.nav-item:hover .nav-icon {
+  color: var(--deep-gold);
+}
+
+.nav-label {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .nav-label {
+  opacity: 1;
+}
+
+/* --- MOBILE RESPONSIVENESS (Android/iOS/Small Web) --- */
+@media (max-width: 768px) {
+  .sidebar {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    height: 70px;
+    width: 100% !important;
+    flex-direction: row;
+    border-right: none;
+    border-top: 1px solid var(--light-gold);
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .brand-section {
+    display: none; /* Hide logo on bottom nav */
+  }
+
+  .nav-links {
+    flex-direction: row;
+    justify-content: space-around;
+    height: 100%;
+  }
+
+  .nav-item {
+    padding: 10px;
+    min-width: auto;
+    flex-direction: column;
+    justify-content: center;
+    border-right: none !important;
+  }
+
+  .nav-item:hover, .nav-item.active {
+    background-color: transparent;
+    border-top: 3px solid var(--primary-gold);
+  }
+
+  .nav-icon {
+    margin-right: 0;
+    margin-bottom: 4px;
+    font-size: 1.4rem;
+  }
+
+  .nav-label {
+    opacity: 1 !important; /* Always show small text on mobile */
+    font-size: 0.65rem;
+  }
+}
