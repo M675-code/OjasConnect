@@ -1,3 +1,0 @@
--- 002_add_foreign_keys.sql
--- Deprecated: See 002_add_foreign_keys.js for a safer, version-compatible migration implementation.
--- This file is intentionally left blank to avoid SQL syntax errors on some MySQL versions.

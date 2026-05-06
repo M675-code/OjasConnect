@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Search, Phone, Briefcase, Mail } from 'lucide-react';
+import './Directory.css'; 
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 

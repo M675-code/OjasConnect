@@ -2,7 +2,11 @@ const { body } = require('express-validator');
 
 const createEventValidator = [
   body('title').notEmpty().withMessage('title is required'),
-  body('event_date').notEmpty().withMessage('event_date is required').isISO8601().withMessage('event_date must be a valid ISO8601 date')
+  body('event_date').notEmpty().withMessage('event_date is required').custom((val) => {
+    // Accept ISO strings and datetime-local values (which parse with Date.parse in JS)
+    const parsed = Date.parse(val);
+    return !isNaN(parsed);
+  }).withMessage('event_date must be a valid date')
 ];
 
 const rsvpValidator = [

@@ -13,6 +13,7 @@
 .main-content {
   flex-grow: 1;
   height: 100vh;
+  width: 100%;
   overflow-y: auto;
   margin-left: var(--sidebar-width-collapsed); 
   position: relative;
@@ -73,9 +74,7 @@
 }
 
 .promo-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  /* REMOVED position: absolute, top, and transform */
   background: rgba(212, 164, 55, 0.8);
   color: white;
   border: none;
@@ -88,12 +87,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
 }
 
-.promo-btn:hover { background: var(--primary-deep); }
-.promo-btn.left { left: 10px; }
-.promo-btn.right { right: 10px; }
 
 
 /* SIDEBAR (HOTSTAR STYLE) */
@@ -200,14 +196,20 @@
     align-items: center;
     justify-content: flex-start; 
     padding: 0 20px 40px 20px;
-    gap: 40px; /* FIX: Forces a strict gap so the text NEVER overlaps the dark slider */
+    gap: 40px; 
     width: 100%;
+    border-radius: 12px;
+    /* NEW: A smooth blend from your beige background to a soft brown */
+    background: linear-gradient(180deg, transparent 0%, rgba(74, 58, 42, 0.08) 100%);
 }
 
 /* --- UPDATED PROMO SLIDER (Larger, Warm Gradient, Bottom Right Buttons) --- */
 .promo-slider-container {
   width: 100%;
-  max-width: 1300px; /* FIX: Increased width (X-axis) */
+  max-width: 2300px; /* FIX: Increased width (X-axis) */
+  height: auto;
+  max-height: 500px;
+  opacity: .95;
   position: relative;
   border-radius: 16px;
   overflow: hidden;
@@ -232,9 +234,9 @@
 
 .promo-overlay {
   position: absolute;
-  inset: 0;
-  /* FIX: Warm Premium Gradient (Left dark, Right light, slight transparency) */
-  background: linear-gradient(to right, rgba(74, 58, 42, 0.95) 0%, rgba(140, 107, 60, 0.6) 60%, rgba(212, 164, 55, 0.2) 100%);
+  inset: 0; /* Ensures it covers 100% of the image */
+  /* NEW: 90% Opacity gradient going from dark brown to slightly transparent right */
+  background: linear-gradient(to right, rgba(74, 58, 42, 0.90) 0%, rgba(74, 58, 42, 0.90) 50%, rgba(0, 0, 0, 0.2) 100%);
 }
 
 .promo-content {
@@ -247,32 +249,18 @@
 
 .promo-controls {
   position: absolute;
-  bottom: 40px;
-  right: 40px;
+  bottom: 30px;      /* Anchors to the bottom */
+  right: 40px;       /* Anchors to the right */
   display: flex;
-  gap: 15px;
+  gap: 20px;         /* NEW: Creates clear space between the two buttons */
   z-index: 100;
 }
 
-.promo-btn {
-  background: rgba(74, 58, 42, 0.7); /* Dark brown glass effect */
-  color: var(--primary-main);
-  border: 1px solid var(--primary-main);
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
-  z-index: 20;
-}
+
 
 .promo-btn:hover { 
-  background: var(--primary-main); 
-  color: white;
+ background: var(--primary-deep); 
+  transform: scale(1.05); /* Slight pop effect on hover */
 }
 
 /* --- NEW CLASSES FOR JSX ELEMENTS --- */
@@ -333,7 +321,7 @@
   
   .main-content {
     margin-left: 0; /* Remove left margin on mobile */
-    margin-bottom: 65px; /* Add bottom margin for nav bar */
+    margin-bottom: 85px; /* Add bottom margin for nav bar */
   }
 
   .sidebar {
@@ -352,4 +340,21 @@
   .nav-links { flex-direction: row; margin-top: 0; width: 100%; justify-content: space-around; }
   .nav-item { padding: 10px; min-width: auto; }
 
+  .home-header h1 {
+    font-size: 1.8rem; /* Smaller font for mobile */
+    text-align: center;
+  }
+  
+  .home-header p {
+    font-size: 1rem;
+    text-align: center;
+    padding: 0 15px; /* Prevent text from touching screen edges */
+  }
+
+  .spotlight-card {
+    width: 90% !important;
+    margin: 0 auto; /* Center it */
+    height: auto; /* Let the image scale naturally */
+    aspect-ratio: 4/5;
+  }
 }

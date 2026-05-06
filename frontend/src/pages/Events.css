@@ -1,0 +1,62 @@
+/* Event Popup Modal Styles */
+.event-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.event-modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #f1f1f1;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.close-btn:hover {
+    background: #e1e1e1;
+}
+
+.event-modal-image {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Customizing the React-Big-Calendar slightly to match your theme */
+.rbc-calendar {
+    font-family: inherit;
+}
+.rbc-event {
+    background-color: var(--primary-main) !important;
+}
+.rbc-today {
+    background-color: #f0f7ff !important;
+}

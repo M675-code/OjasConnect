@@ -63,3 +63,23 @@
 .login-button:hover { background-color: #B88A2E; }
 .login-button:active { transform: scale(0.98); }
 .error-message { color: #D84315; font-size: 14px; text-align: center; background-color: rgba(216, 67, 21, 0.1); padding: 10px; border-radius: 6px; }
+
+/* Mobile Fixes for Login Screen */
+@media (max-width: 768px) {
+  .login-container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+
+  .login-form input {
+    padding: 12px 15px; /* Larger touch area */
+    font-size: 16px; /* Prevents iOS Safari from auto-zooming on tap */
+  }
+
+  .login-options {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+}

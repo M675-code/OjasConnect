@@ -15,7 +15,8 @@ export default function Profile() {
 
     useEffect(() => {
         if (targetId) {
-            axios.get(`http://localhost:5000/api/users/${targetId}`)
+            // axios.get(`http://localhost:5000/api/users/${targetId}`)
+            fetch(`${import.meta.env.VITE_API_URL}/api/users/me`)
                 .then(res => { setProfileData(res.data); setLoading(false); })
                 .catch(err => { console.error(err); setLoading(false); });
         }
@@ -67,7 +68,8 @@ export default function Profile() {
                 </div>
 
                 {/* --- LEVEL 2: BRANCHES --- */}
-                {(isMarried || profileData.kids?.length > 0 || profileData.businesses?.length > 0 || profileData.jobs?.length > 0) && (
+                {/* Render branches when married (to show spouse and possible children) or when there are businesses/jobs to show for single users */}
+                {(isMarried || profileData.businesses?.length > 0 || profileData.jobs?.length > 0) && (
                     <div className="tree-branches">
                         <div className="tree-line-horizontal"></div>
 
@@ -96,8 +98,8 @@ export default function Profile() {
                             </div>
                         )}
 
-                        {/* KIDS BRANCH */}
-                        {profileData.kids?.length > 0 && (
+                        {/* KIDS BRANCH: show only for married users who have added children */}
+                        {isMarried && profileData.kids?.length > 0 && (
                             <div className="tree-node">
                                 <div className="ojas-profile-card">
                                     <div className="card-header orange kid-header">

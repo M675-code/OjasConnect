@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ojas Connect</string>
+    <string name="title_activity_main">Ojas Connect</string>
+    <string name="package_name">com.ojas.connect</string>
+    <string name="custom_url_scheme">com.ojas.connect</string>
+</resources>

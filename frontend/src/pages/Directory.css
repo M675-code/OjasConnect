@@ -1,0 +1,42 @@
+/* Mobile Fixes for Directory and Event Cards */
+@media (max-width: 768px) {
+  .member-card, 
+  .event-card {
+    margin: 10px 15px !important; /* Adds margin on the left/right of the screen */
+    padding: 15px !important;
+  }
+
+  /* Make the search and sort bars stack */
+  .directory-header-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+
+  .directory-header-controls input[type="text"],
+  .directory-header-controls select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px; /* 16px prevents iOS from auto-zooming! */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  /* Stack the Edit/Deactivate/Delete buttons */
+  .card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .card-actions button {
+    width: 100%; /* Full width touch targets for mobile */
+    padding: 12px;
+  }
+}

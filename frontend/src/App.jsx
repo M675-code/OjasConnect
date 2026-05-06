@@ -26,7 +26,7 @@ const PromoSlider = () => {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrent((prev) => (prev === promos.length - 1 ? 0 : prev + 1));
-        }, 3000);
+        }, 15000);
         return () => clearInterval(timer);
     }, [promos.length]);
 

@@ -69,3 +69,26 @@
 .repeated-block {
     margin-bottom: 15px;
 }
+
+/* Mobile Fixes for Admin Panel Forms */
+@media (max-width: 768px) {
+  /* Assuming your form rows use a flexbox container class like .form-row */
+  .form-row {
+    flex-direction: column !important;
+    gap: 15px; /* Adds space between the stacked inputs */
+  }
+
+  .form-row input, 
+  .form-row select {
+    width: 100% !important; /* Make inputs take full width of phone screen */
+    box-sizing: border-box;
+  }
+
+  /* Fix overlapping validation text */
+  .error-text {
+    font-size: 0.8rem;
+    position: relative;
+    margin-bottom: 10px;
+    display: block;
+  }
+}

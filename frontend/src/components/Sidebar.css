@@ -94,17 +94,60 @@
 /* --- MOBILE RESPONSIVENESS (Android/iOS/Small Web) --- */
 @media (max-width: 768px) {
   .sidebar {
+    position: fixed;
     top: auto;
     bottom: 0;
     left: 0;
     height: 70px;
     width: 100% !important;
+    z-index: 1000;
     flex-direction: row;
     border-right: none;
     border-top: 1px solid var(--light-gold);
     justify-content: space-around;
     align-items: center;
   }
+
+  @media (max-width: 768px) {
+    .bottom-nav {
+      /* Push the bar up to respect the iOS swipe indicator */
+      justify-content: space-around;
+      align-items: center;
+      background: #ffffff;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+      padding: 10px 5px;
+      padding-bottom: env(safe-area-inset-bottom, 15px);
+      height: auto;
+      display: flex;
+    }
+    
+    .bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px; /* Space between icon and text */
+    text-decoration: none;
+    }
+
+    .bottom-nav-item svg, 
+    .bottom-nav-item img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .bottom-nav-item span {
+      font-size: 0.7rem; /* Make icon text slightly smaller so it doesn't wrap */
+      text-align: center;
+      line-height: 1;
+    }
+  }
+
+  @media screen and (max-height: 500px) {
+        .sidebar {
+            display: none !important;
+        }
+    }
 
   .brand-section {
     display: none; /* Hide logo on bottom nav */
