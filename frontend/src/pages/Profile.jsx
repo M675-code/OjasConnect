@@ -11,21 +11,43 @@ export default function Profile() {
     const [profileData, setProfileData] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    // 1. Define IDs
     const targetId = id || loggedInUser?.id;
+
+    // 2. MOVED THIS UP: Define isMySpace BEFORE the useEffect
+    const isMySpace = !id || parseInt(id) === loggedInUser?.id;
 
     useEffect(() => {
         if (targetId) {
+            setLoading(true);
+            const token = localStorage.getItem('token');
+
+            // FIX: Always use the targetId directly.
+            // Dynamically choose between 'me' or the specific user ID
+            const endpoint = `${import.meta.env.VITE_API_URL}/api/users/${targetId}`;
+
             // axios.get(`http://localhost:5000/api/users/${targetId}`)
-            fetch(`${import.meta.env.VITE_API_URL}/api/users/me`)
-                .then(res => { setProfileData(res.data); setLoading(false); })
-                .catch(err => { console.error(err); setLoading(false); });
+            // fetch(`${import.meta.env.VITE_API_URL}/api/users/me`)
+            //     .then(res => { setProfileData(res.data); setLoading(false); })
+            //     .catch(err => { console.error(err); setLoading(false); });
+            // Pass the auth token and use axios for consistency
+            axios.get(endpoint, { headers: { Authorization: `Bearer ${token}` } })
+                .then(res => { 
+                    // Handle both standard axios response or nested data response
+                    setProfileData(res.data.data || res.data); 
+                    setLoading(false); 
+                })
+                .catch(err => { 
+                    console.error(err); 
+                    setProfileData(null);
+                    setLoading(false); 
+                });
         }
     }, [targetId]);
 
     if (loading) return <div style={{ padding: '30px' }}>Loading profile...</div>;
     if (!profileData) return <div style={{ padding: '30px' }}>User not found.</div>;
 
-    const isMySpace = !id || parseInt(id) === loggedInUser.id;
     const isMarried = profileData.marital_status?.toLowerCase() === 'married';
 
     return (

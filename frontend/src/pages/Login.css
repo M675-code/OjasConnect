@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   /* Soft beige gradient matching the logo background */
-  background: radial-gradient(circle at center, #FFFFFF 0%, #EFEBE1 100%);
+  background: radial-gradient(circle at center, #FFFFFF 0%, #E2E8F0 100%);
   padding: 20px;
 }
 
@@ -16,18 +16,20 @@
   max-width: 420px;
   background-color: #FFFFFF;
   border-radius: 16px;
-  border: 1px solid rgba(212, 164, 55, 0.3); /* Subtle gold */
-  box-shadow: 0 10px 40px rgba(74, 58, 42, 0.08); 
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
+/* NEW: Replaced the flat brown border/shadow with the Teal Highlight */
+  border: 1px solid rgba(0, 180, 216, 0.4);
+  box-shadow: 0 0 30px rgba(0, 180, 216, 0.15);
 }
 
 .login-header {
-  background-color: #F8F4EC; /* Match logo background exact hex if possible */
+  background-color: var(--bg-main); /* Match logo background exact hex if possible */
   padding: 30px 20px 15px;
   text-align: center;
-  border-bottom: 2px solid #D4A437;
+  border-bottom: 2px solid var(--primary-main);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +37,12 @@
 }
 
 .login-logo { height: 70px; width: auto; object-fit: contain; }
-.login-title { color: #4A3A2A; font-size: 24px; font-weight: bold; letter-spacing: 1px; }
+.login-title { 
+  color: var(--text-dark); /* Now Navy Slate */ 
+  font-size: 24px; 
+  font-weight: bold; 
+  letter-spacing: 1px; 
+}
 
 .login-form-container { padding: 30px 40px; display: flex; flex-direction: column; gap: 25px; }
 
@@ -44,20 +51,24 @@
   border-bottom: 2px solid rgba(110, 110, 110, 0.2);
   padding-bottom: 8px; transition: border-color 0.3s ease;
 }
-.input-group:focus-within { border-bottom: 2px solid #D4A437; }
+.input-group:focus-within { border-bottom: 2px solid var(--vibrant-anchor) }
 .input-icon { color: #6E6E6E; }
-.input-group:focus-within .input-icon { color: #D4A437; }
+.input-group:focus-within .input-icon { color: var(--vibrant-anchor); }
 
 .login-input { flex-grow: 1; background: transparent; border: none; color: #4A3A2A; font-size: 16px; outline: none; }
 .login-input::placeholder { color: #6E6E6E; }
 
 .login-options { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
 .remember-me { display: flex; align-items: center; gap: 5px; color: #6E6E6E; }
-.forgot-password { color: #F57C00; text-decoration: none; font-weight: 500; }
-.forgot-password:hover { color: #D84315; }
+.forgot-password { 
+  color: var(--vibrant-anchor); /* Swapped from Orange to Teal */ 
+  text-decoration: none; 
+  font-weight: 500; 
+}
+.forgot-password:hover { color: var(--vibrant-deep); }
 
 .login-button {
-  background-color: #D4A437; color: #fff; border: none; padding: 14px; border-radius: 8px;
+  background-color: var(--primary-main); /* Keep Gold for prestige */ color: #fff; border: none; padding: 14px; border-radius: 8px;
   font-size: 16px; font-weight: bold; cursor: pointer; transition: background-color 0.3s, transform 0.1s; margin-top: 10px;
 }
 .login-button:hover { background-color: #B88A2E; }

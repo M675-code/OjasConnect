@@ -152,7 +152,8 @@ export default function Directory() {
             <h2 style={{ color: 'var(--text-dark)', marginBottom: '20px' }}>Member Directory</h2>
             
             <div className="ojas-card" style={{ marginBottom: '30px', display: 'flex', gap: '15px', padding: '15px' }}>
-                <div style={{ display: 'flex', flexGrow: 1, alignItems: 'center', border: '1px solid #ddd', padding: '10px 15px', borderRadius: '8px', background: '#fdfdfd' }}>
+                {/* <div style={{ display: 'flex', flexGrow: 1, alignItems: 'center', border: '1px solid #ddd', padding: '10px 15px', borderRadius: '8px', background: '#fdfdfd' }}> */}
+                <div className="directory-search-wrapper"> 
                     <Search size={20} color="var(--primary-main)" style={{ marginRight: '10px' }}/>
                     <input 
                         type="text" 
@@ -161,7 +162,8 @@ export default function Directory() {
                         onChange={(e) => setSearch(e.target.value)} 
                         style={{ border: 'none', width: '100%', outline: 'none', background: 'transparent', fontSize: '15px' }}
                     />
-                </div>
+                </div>       
+                {/* </div> */}
                 <select onChange={(e) => setStatusFilter(e.target.value)} value={statusFilter} style={{ padding: '10px 15px', borderRadius: '8px', border: '1px solid #ddd', outline: 'none', background: '#fdfdfd' }}>
                     <option value="">All Members</option>
                     <option value="active">Active Only</option>
@@ -188,7 +190,8 @@ export default function Directory() {
                 {members.map(m => (
                     <div key={m.id} className="ojas-card" style={{ display: 'flex', flexDirection: 'column', gap: '15px', padding: '20px' }}>
                         
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                        {/* <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}> */}
+                        <div className="directory-card-top">
                             <div>
                                 <h3 style={{ margin: '0 0 5px 0', fontSize: '18px' }}>
                                     <Link to={`/user/${m.id}`} style={{ color: 'var(--primary-deep)', textDecoration: 'none' }}>
@@ -198,8 +201,14 @@ export default function Directory() {
                                 {/* Small Badge for Active/Past */}
                                 <span style={{ 
                                     fontSize: '11px', fontWeight: 'bold', padding: '4px 8px', borderRadius: '12px', 
-                                    backgroundColor: m.status === 'active' ? '#E8F5E9' : (m.status === 'inactive' ? '#FFF3E0' : (m.status === 'suspended' ? '#FFEBEE' : (m.status === 'invited' ? '#E3F2FD' : '#BDBDBD'))), 
-                                    color: m.status === 'active' ? '#2E7D32' : (m.status === 'inactive' ? '#EF6C00' : (m.status === 'suspended' ? '#C62828' : (m.status === 'invited' ? '#1976D2' : '#424242'))) 
+                                    backgroundColor: m.status === 'active' ? '#E6F9F4' : // Emerald Light
+                                                    (m.status === 'inactive' ? '#F1F5F9' : // Cool Mist
+                                                    (m.status === 'suspended' ? '#FFEBEE' : 
+                                                    (m.status === 'invited' ? '#E0F7FA' : '#E2E8F0'))), // Teal Light
+                                    color: m.status === 'active' ? '#06D6A0' : // Emerald Green
+                                                    (m.status === 'inactive' ? '#6C7A89' : // Muted Gray 
+                                                    (m.status === 'suspended' ? '#E63946' : // Modern Red
+                                                    (m.status === 'invited' ? '#00B4D8' : '#424242'))) // Teal
                                 }}>
                                     {(m.status || 'active').toUpperCase()}
                                 </span>

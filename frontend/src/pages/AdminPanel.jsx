@@ -140,7 +140,8 @@ export default function AdminPanel() {
         setLoading(true);
         try {
             // FIXED: Send 'finalKidsData' to the backend instead of 'kidsData'
-            const res = await axios.post(`${API_BASE}/api/admin/users`, { userData, spouseData, kidsData: finalKidsData, jobData, businessData }, { headers: { Authorization: `Bearer ${localStorage.getItem('token') || ''}` } });
+            // const res = await axios.post(`${API_BASE}/api/admin/users`, { userData, spouseData, kidsData: finalKidsData, jobData, businessData }, { headers: { Authorization: `Bearer ${localStorage.getItem('token') || ''}` } });
+            const res = await axios.post(`${API_BASE}/api/admin/users`, { userData, spouseData, kidsData, jobData, businessData }, { headers: { Authorization: `Bearer ${localStorage.getItem('token') || ''}` } });
             const temp = res.data.tempPassword || '***';
             setSuccessMsg(`User created successfully. Temporary password: ${temp} (share securely)`);
             setErrors([]);
@@ -335,7 +336,26 @@ export default function AdminPanel() {
                          <input style={{...inputStyle, background: '#fff'}} type="text" placeholder="Please specify occupation details..." value={userOtherOccupation} onChange={e => setUserOtherOccupation(e.target.value)} />
                     )}
 
-                    <button onClick={() => handleNext(1)} style={{...btnStyle, width: '100%', marginTop: '10px'}}>Next: Spouse Details</button>
+                    {/* <button onClick={() => handleNext(1)} style={{...btnStyle, width: '100%', marginTop: '10px'}}>Next: Spouse Details</button> */}
+                    {/* Smart Submit Logic: If Single, show Finish. If Married, show Next. */}
+                    <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+                        {userData.marital_status === 'single' ? (
+                            <button 
+                                onClick={() => { if(validateStep(1)) handleSubmit(); }} 
+                                disabled={loading} 
+                                style={{...btnStyle, width: '100%', backgroundColor: 'var(--accent-success)'}}
+                            >
+                                {loading ? 'Saving...' : 'Finish & Save User'}
+                            </button>
+                        ) : (
+                            <button 
+                                onClick={() => handleNext(1)} 
+                                style={{...btnStyle, width: '100%'}}
+                            >
+                                Next: Spouse Details
+                            </button>
+                        )}
+                    </div>
                 </div>
             )}
 

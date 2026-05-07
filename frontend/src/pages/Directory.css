@@ -1,5 +1,33 @@
+/* Add this above your @media query */
+.directory-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+}
+
 /* Mobile Fixes for Directory and Event Cards */
 @media (max-width: 768px) {
+
+  .ojas-card {
+        /* Forces long emails to break to the next line instead of pushing out */
+        overflow-wrap: anywhere;
+        word-break: break-word;
+  }
+
+  .directory-card-top {
+        /* Stacks the user's name on top of the View/Edit buttons */
+        flex-direction: column;
+        width: 100%;
+    }
+
+  .directory-card-top > div:last-child {
+      /* Aligns the action buttons to the left on mobile */
+      width: 100%;
+      justify-content: flex-start;
+      flex-wrap: wrap; 
+  }
+
   .member-card, 
   .event-card {
     margin: 10px 15px !important; /* Adds margin on the left/right of the screen */
@@ -25,6 +53,33 @@
     border-radius: 8px;
     box-sizing: border-box;
   }
+
+  /* Directory Search Bar - Resting State */
+.directory-search-wrapper {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  border: 1px solid rgba(27, 38, 59, 0.15); /* Faint Navy border */
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: #FFFFFF;
+  transition: all 0.2s ease;
+}
+
+/* Directory Search Bar - Focus/Highlight State */
+.directory-search-wrapper:focus-within {
+  border-color: var(--vibrant-anchor);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15); /* Soft outer ring */
+}
+
+.directory-search-input {
+  border: none;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  color: var(--text-dark);
+}
 
   /* Stack the Edit/Deactivate/Delete buttons */
   .card-actions {

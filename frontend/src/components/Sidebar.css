@@ -5,8 +5,8 @@
   top: 0;
   height: 100vh;
   width: 80px; /* Collapsed width */
-  background-color: var(--bg-beige);
-  border-right: 1px solid var(--light-gold);
+  background-color: var(--bg-main);
+  border-right: 1px solid rgba(27, 38, 59, 0.1);
   display: flex;
   flex-direction: column;
   transition: width 0.3s ease;
@@ -31,12 +31,11 @@
 .brand-logo {
   width: 40px;
   height: auto;
-  border-radius: 50%; /* Optional: rounds the logo if needed */
   margin-right: 15px;
 }
 
 .brand-name {
-  color: var(--primary-gold);
+  color: var(--primary-main);
   font-size: 1.2rem;
   font-weight: 700;
   opacity: 0;
@@ -59,25 +58,25 @@
   align-items: center;
   padding: 15px 28px;
   text-decoration: none;
-  color: var(--dark-brown);
+  color: var(--text-dark);
   min-width: 240px;
   transition: all 0.2s ease;
 }
 
 .nav-item:hover, .nav-item.active {
-  background-color: var(--light-gold);
-  color: var(--dark-brown);
-  border-right: 4px solid var(--primary-gold);
+  background-color: rgba(207, 159, 45, 0.1);
+  color: var(--primary-deep);
+  border-right: 4px solid var(--primary-main);
 }
 
 .nav-icon {
   font-size: 1.5rem;
   margin-right: 25px;
-  color: var(--primary-gold);
+  color: var(--primary-main);
 }
 
 .nav-item:hover .nav-icon {
-  color: var(--deep-gold);
+  color: var(--primary-deep);
 }
 
 .nav-label {
@@ -91,56 +90,60 @@
   opacity: 1;
 }
 
-/* --- MOBILE RESPONSIVENESS (Android/iOS/Small Web) --- */
+/* --- CLEANED MOBILE RESPONSIVENESS (Android/iOS) --- */
 @media (max-width: 768px) {
   .sidebar {
     position: fixed;
     top: auto;
     bottom: 0;
     left: 0;
-    height: 70px;
-    width: 100% !important;
+    /* FIX: Increased height slightly and added safe-area support for iOS swipe bars */
+    height: calc(75px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    width: 100vw !important;
     z-index: 1000;
     flex-direction: row;
     border-right: none;
-    border-top: 1px solid var(--light-gold);
+    border-top: 1px solid rgba(27, 38, 59, 0.1);
     justify-content: space-around;
     align-items: center;
   }
 
-  @media (max-width: 768px) {
-    .bottom-nav {
-      /* Push the bar up to respect the iOS swipe indicator */
-      justify-content: space-around;
-      align-items: center;
-      background: #ffffff;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-      padding: 10px 5px;
-      padding-bottom: env(safe-area-inset-bottom, 15px);
-      height: auto;
-      display: flex;
-    }
-    
-    .bottom-nav-item {
-    display: flex;
-    flex-direction: column;
+  /* Hide Desktop Branding */
+  .brand-section {
+    display: none; 
+  }
+
+  .nav-links {
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
+    height: 100%;
+    width: 100%;
+    margin: 0; /* Clear desktop margins */
+  }
+
+  .nav-item {
+    padding: 5px; /* Reduced padding to fit screen */
+    min-width: auto;
+    flex-direction: column;
     justify-content: center;
-    gap: 4px; /* Space between icon and text */
-    text-decoration: none;
-    }
+    align-items: center;
+    border: none !important; /* Clear desktop hover borders */
+    gap: 4px;
+  }
 
-    .bottom-nav-item svg, 
-    .bottom-nav-item img {
-      width: 24px;
-      height: 24px;
-    }
+  .nav-icon {
+    margin-right: 0; /* Clear desktop margin */
+    margin-bottom: 0;
+    font-size: 1.3rem; /* Scaled down perfectly for mobile */
+  }
 
-    .bottom-nav-item span {
-      font-size: 0.7rem; /* Make icon text slightly smaller so it doesn't wrap */
-      text-align: center;
-      line-height: 1;
-    }
+  .nav-label {
+    opacity: 1 !important; /* Always show text on mobile */
+    font-size: 0.65rem;
+    text-align: center;
+    transform: none !important; /* Stop desktop hover animations */
   }
 
   @media screen and (max-height: 500px) {

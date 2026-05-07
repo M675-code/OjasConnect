@@ -55,8 +55,8 @@
     font-family: inherit;
 }
 .rbc-event {
-    background-color: var(--primary-main) !important;
+    background-color: var(--vibrant-anchor) !important; /* Teal Event Blocks */
 }
 .rbc-today {
-    background-color: #f0f7ff !important;
+    background-color: #E0F7FA !important; /* Very light Teal highlight */
 }

@@ -181,7 +181,7 @@ export default function Events() {
                         <p style={{ lineHeight: '1.6', marginBottom: '20px' }}>{selectedEvent.description}</p>
                         
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #eee', paddingTop: '15px' }}>
-                            <span style={{ fontWeight: 'bold', color: 'var(--accent-orange)' }}>{selectedEvent.rsvp_count || 0} People Going</span>
+                            <span style={{ fontWeight: 'bold', color: 'var(--vibrant-anchor)' }}>{selectedEvent.rsvp_count || 0} People Going</span>
                             
                             <div style={{ display: 'flex', gap: '10px' }}>
                                 <button disabled={selectedEvent.is_past} onClick={() => handleRSVP(selectedEvent.id, 'going')} style={{ padding: '8px 15px', cursor: selectedEvent.is_past ? 'not-allowed' : 'pointer', border: '1px solid var(--primary-main)', backgroundColor: 'transparent', borderRadius: '4px' }}>
