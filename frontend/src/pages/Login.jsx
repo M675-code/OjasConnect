@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { Mail, Lock } from 'lucide-react';
+import NetworkBackground from '../components/NetworkBackground';
 import './Login.css';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
@@ -40,6 +41,12 @@ export default function Login() {
     };
 
     return (
+      <>
+        {/* 2. Add the animated background behind everything */}
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1, pointerEvents: 'none' }}>
+            <NetworkBackground />
+        </div>
+
         <div className="login-wrapper">
             <div className="login-card">
                 
@@ -95,5 +102,6 @@ export default function Login() {
                 </form>
             </div>
         </div>
+      </>
     );
 }

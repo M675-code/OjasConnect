@@ -98,15 +98,19 @@
     bottom: 0;
     left: 0;
     /* FIX: Increased height slightly and added safe-area support for iOS swipe bars */
-    height: calc(75px + env(safe-area-inset-bottom, 0px));
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+    height: auto;
+    min-height: 70px;
     width: 100vw !important;
     z-index: 1000;
+    display: flex;
     flex-direction: row;
     border-right: none;
     border-top: 1px solid rgba(27, 38, 59, 0.1);
-    justify-content: space-around;
-    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
+    /* Safe area padding for iOS swipe bar, 10px fallback for Android */
+    padding-bottom: env(safe-area-inset-bottom, 10px);
+    box-sizing: border-box;
   }
 
   /* Hide Desktop Branding */
@@ -115,28 +119,33 @@
   }
 
   .nav-links {
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     height: 100%;
     width: 100%;
     margin: 0; /* Clear desktop margins */
+    padding: 0;
   }
 
   .nav-item {
-    padding: 5px; /* Reduced padding to fit screen */
+    flex: 1;
+    padding: 10px 5px; /* Reduced padding to fit screen */
     min-width: auto;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border: none !important; /* Clear desktop hover borders */
     gap: 4px;
+    box-sizing: border-box;
   }
 
   .nav-icon {
     margin-right: 0; /* Clear desktop margin */
     margin-bottom: 0;
-    font-size: 1.3rem; /* Scaled down perfectly for mobile */
+    font-size: 1.4rem; /* Scaled down perfectly for mobile */
   }
 
   .nav-label {
@@ -144,6 +153,7 @@
     font-size: 0.65rem;
     text-align: center;
     transform: none !important; /* Stop desktop hover animations */
+    margin: 0;
   }
 
   @media screen and (max-height: 500px) {
